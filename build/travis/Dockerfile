@@ -1,4 +1,4 @@
-FROM campsych/concerto-platform:test
+FROM tools4assessment/concerto-v5:test
 MAINTAINER Przemyslaw Lis <przemek@concertoplatform.com>
 
 RUN apt-get update -y \
