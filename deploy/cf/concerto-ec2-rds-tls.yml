@@ -413,11 +413,12 @@ Resources:
             sed -ri 's/^(.*CONCERTO_PASSWORD\s*=).*$/\1${ConcertoPassword}/' docker-compose.yml
             docker-compose up -d concerto
 
-            # Auto Update Images
+            # Auto check and pull updated (master) image from docker hub and refresh Concerto every 15 minutes
             cd /home/ec2-user
             wget https://raw.githubusercontent.com/tools4assessment/concerto-v5/master/deploy/cf/update-image.sh
             chmod 775 ./update-image.sh
-            (crontab -l ; echo "15 * * * * /home/ec2-user/update-image.sh") | crontab -
+            (crontab -l ; echo "*/15 * * * * /home/ec2-user/update-image.sh") | crontab -
+            (crontab -u ec2-user -l ; echo "*/15 * * * * /home/ec2-user/update-image.sh") | crontab -u ec2-user -
 
             # TLS
             wget https://raw.githubusercontent.com/tools4assessment/concerto-v5/master/deploy/docker-compose/tls/install_tls.sh
