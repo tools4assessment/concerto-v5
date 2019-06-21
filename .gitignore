@@ -22,3 +22,6 @@
 *.iml
 /.web-server-pid
 /deploy/docker-compose/data
+.DS_Store
+deploy/.DS_Store
+deploy/docker-compose/.DS_Store
